@@ -22,6 +22,7 @@ public class AuthenticationController : ApiController
         _mapper = mapper;
     }
 
+    [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
@@ -33,6 +34,7 @@ public class AuthenticationController : ApiController
             errors => Problem(errors));
     }
 
+    [HttpPost]
     [Route("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
