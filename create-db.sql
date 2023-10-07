@@ -1,0 +1,137 @@
+CREATE TABLE [dbo].[__EFMigrationsHistory] ( 
+  [MigrationId] NVARCHAR(150) NOT NULL,
+  [ProductVersion] NVARCHAR(32) NOT NULL,
+  CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+CREATE TABLE [dbo].[Bills] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  [DinnerId] UNIQUEIDENTIFIER NOT NULL,
+  [GuestId] UNIQUEIDENTIFIER NOT NULL,
+  [HostId] UNIQUEIDENTIFIER NOT NULL,
+  [Price_Amount] DECIMAL(18,2) NOT NULL,
+  [Price_Currency] NVARCHAR(MAX) NOT NULL,
+  CONSTRAINT [PK_Bills] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[Dinners] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  [Name] NVARCHAR(100) NOT NULL,
+  [Description] NVARCHAR(100) NOT NULL,
+  [StartDateTime] DATETIME2 NOT NULL,
+  [EndDateTime] DATETIME2 NOT NULL,
+  [StartedDateTime] DATETIME2 NULL,
+  [EndedDateTime] DATETIME2 NULL,
+  [Status] NVARCHAR(25) NOT NULL,
+  [IsPublic] BIT NOT NULL,
+  [MaxGuests] INT NOT NULL,
+  [Price_Amount] DECIMAL(18,2) NOT NULL,
+  [Price_Currency] NVARCHAR(MAX) NOT NULL,
+  [HostId] UNIQUEIDENTIFIER NOT NULL,
+  [MenuId] UNIQUEIDENTIFIER NOT NULL,
+  [ImageUrl] NVARCHAR(MAX) NOT NULL,
+  [Location_Name] NVARCHAR(MAX) NOT NULL,
+  [Location_Description] NVARCHAR(MAX) NOT NULL,
+  [Location_Latitude] FLOAT NOT NULL,
+  [Location_Longitude] FLOAT NOT NULL,
+  CONSTRAINT [PK_Dinners] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[Guests] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  CONSTRAINT [PK_Guests] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[Hosts] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  [FirstName] NVARCHAR(100) NOT NULL,
+  [LastName] NVARCHAR(100) NOT NULL,
+  [ProfileImage] NVARCHAR(MAX) NOT NULL,
+  [AverageRating_Value] FLOAT NOT NULL,
+  [AverageRating_NumRatings] INT NOT NULL,
+  [UserId] UNIQUEIDENTIFIER NOT NULL,
+  CONSTRAINT [PK_Hosts] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[MenuReviews] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  [Rating_Value] FLOAT NOT NULL,
+  [Comment] NVARCHAR(1000) NOT NULL,
+  [HostId] UNIQUEIDENTIFIER NOT NULL,
+  [MenuId] UNIQUEIDENTIFIER NOT NULL,
+  [GuestId] UNIQUEIDENTIFIER NOT NULL,
+  [DinnerId] UNIQUEIDENTIFIER NOT NULL,
+  CONSTRAINT [PK_MenuReviews] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[Menus] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  [Name] NVARCHAR(100) NOT NULL,
+  [Description] NVARCHAR(100) NOT NULL,
+  [AverageRating_Value] FLOAT NOT NULL,
+  [AverageRating_NumRatings] INT NOT NULL,
+  [HostId] UNIQUEIDENTIFIER NOT NULL,
+  [CreatedDateTime] DATETIME2 NOT NULL,
+  [UpdatedDateTime] DATETIME2 NOT NULL,
+  CONSTRAINT [PK_Menus] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[Users] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  [FirstName] NVARCHAR(50) NOT NULL,
+  [LastName] NVARCHAR(50) NOT NULL,
+  [Email] NVARCHAR(150) NOT NULL,
+  [Password] NVARCHAR(MAX) NOT NULL,
+  [CreatedDateTime] DATETIME2 NOT NULL,
+  [UpdatedDateTime] DATETIME2 NOT NULL,
+  CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[Reservations] ( 
+  [Id] UNIQUEIDENTIFIER NOT NULL,
+  [DinnerId] UNIQUEIDENTIFIER NOT NULL,
+  [GuestCount] INT NOT NULL,
+  [ReservationStatus] NVARCHAR(MAX) NOT NULL,
+  [GuestId] UNIQUEIDENTIFIER NOT NULL,
+  [BillId] UNIQUEIDENTIFIER NOT NULL,
+  [ArrivalDateTime] DATETIME2 NULL,
+  CONSTRAINT [PK_Reservations] PRIMARY KEY ([DinnerId], [Id])
+);
+CREATE TABLE [dbo].[HostDinnerIds] ( 
+  [Id] INT IDENTITY NOT NULL,
+  [HostDinnerId] UNIQUEIDENTIFIER NOT NULL,
+  [HostId] UNIQUEIDENTIFIER NOT NULL,
+  CONSTRAINT [PK_HostDinnerIds] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[HostMenuIds] ( 
+  [Id] INT IDENTITY NOT NULL,
+  [HostMenuId] UNIQUEIDENTIFIER NOT NULL,
+  [HostId] UNIQUEIDENTIFIER NOT NULL,
+  CONSTRAINT [PK_HostMenuIds] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[MenuDinnerIds] ( 
+  [Id] INT IDENTITY NOT NULL,
+  [DinnerId] UNIQUEIDENTIFIER NOT NULL,
+  [MenuId] UNIQUEIDENTIFIER NOT NULL,
+  CONSTRAINT [PK_MenuDinnerIds] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[MenuReviewIds] ( 
+  [Id] INT IDENTITY NOT NULL,
+  [ReviewId] UNIQUEIDENTIFIER NOT NULL,
+  [MenuId] UNIQUEIDENTIFIER NOT NULL,
+  CONSTRAINT [PK_MenuReviewIds] PRIMARY KEY ([Id])
+);
+CREATE TABLE [dbo].[MenuSections] ( 
+  [MenuSectionId] UNIQUEIDENTIFIER NOT NULL,
+  [MenuId] UNIQUEIDENTIFIER NOT NULL,
+  [Name] NVARCHAR(100) NOT NULL,
+  [Description] NVARCHAR(100) NOT NULL,
+  CONSTRAINT [PK_MenuSections] PRIMARY KEY ([MenuId], [MenuSectionId])
+);
+CREATE TABLE [dbo].[MenuItems] ( 
+  [MenuItemId] UNIQUEIDENTIFIER NOT NULL,
+  [MenuSectionId] UNIQUEIDENTIFIER NOT NULL,
+  [MenuId] UNIQUEIDENTIFIER NOT NULL,
+  [Name] NVARCHAR(100) NOT NULL,
+  [Description] NVARCHAR(100) NOT NULL,
+  CONSTRAINT [PK_MenuItems] PRIMARY KEY ([MenuId], [MenuItemId], [MenuSectionId])
+);
+ALTER TABLE [dbo].[Reservations] ADD CONSTRAINT [FK_Reservations_Dinners_DinnerId] FOREIGN KEY ([DinnerId]) REFERENCES [dbo].[Dinners] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE [dbo].[HostDinnerIds] ADD CONSTRAINT [FK_HostDinnerIds_Hosts_HostId] FOREIGN KEY ([HostId]) REFERENCES [dbo].[Hosts] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE [dbo].[HostMenuIds] ADD CONSTRAINT [FK_HostMenuIds_Hosts_HostId] FOREIGN KEY ([HostId]) REFERENCES [dbo].[Hosts] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE [dbo].[MenuDinnerIds] ADD CONSTRAINT [FK_MenuDinnerIds_Menus_MenuId] FOREIGN KEY ([MenuId]) REFERENCES [dbo].[Menus] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE [dbo].[MenuReviewIds] ADD CONSTRAINT [FK_MenuReviewIds_Menus_MenuId] FOREIGN KEY ([MenuId]) REFERENCES [dbo].[Menus] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE [dbo].[MenuSections] ADD CONSTRAINT [FK_MenuSections_Menus_MenuId] FOREIGN KEY ([MenuId]) REFERENCES [dbo].[Menus] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE [dbo].[MenuItems] ADD CONSTRAINT [FK_MenuItems_MenuSections_MenuSectionId_MenuId] FOREIGN KEY ([MenuId], [MenuId], [MenuSectionId], [MenuSectionId]) REFERENCES [dbo].[MenuSections] ([MenuSectionId], [MenuId], [MenuSectionId], [MenuId]) ON DELETE CASCADE ON UPDATE NO ACTION;
