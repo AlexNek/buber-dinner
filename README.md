@@ -37,3 +37,9 @@ After browser opening you can use swagger to test api. Don't forget to use autor
 
 At this point, all users stored in memory, so you need to register user every time after start.
 No menu reading implemented now.
+
+## Database design
+![image](pics/db-host.png)
+![image](pics/db-menu.png)
+![image](pics/db-reservation.png)
+![image](pics/db-single-tables.png)
