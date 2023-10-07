@@ -35,8 +35,8 @@ public static class DependencyInjectionRegister
     public static IServiceCollection AddPersistance(this IServiceCollection services)
     {
         services.AddDbContext<BuberDinnerDbContext>(options =>
-            options.UseSqlServer("Server=sql-data;Database=BuberDinner;User Id=sa;Password=amiko123!;TrustServerCertificate=True"));
-
+            //options.UseSqlServer("Server=localhost;Database=BuberDinner;User Id=sa;Password=amiko123!;TrustServerCertificate=True"));
+            options.UseSqlServer("Data Source=.;Initial Catalog=BuberDinner;TrustServerCertificate=True;Integrated Security=true"));
         services.AddScoped<PublishDomainEventsInterceptor>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
