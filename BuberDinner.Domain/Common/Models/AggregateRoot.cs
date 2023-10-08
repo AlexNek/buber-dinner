@@ -1,9 +1,9 @@
 namespace BuberDinner.Domain.Common.Models;
 
 public abstract class AggregateRoot<TId, TIdType> : Entity<TId>
-    where TId : AggregateRootId<TIdType>
+    where TId : ValueId<TIdType>
 {
-    public new AggregateRootId<TIdType> Id { get; protected set; }
+    public new ValueId<TIdType> Id { get; protected set; }
 
     protected AggregateRoot(TId id)
     {

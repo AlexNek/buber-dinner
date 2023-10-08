@@ -2,7 +2,7 @@ using BuberDinner.Domain.Common.Models;
 
 namespace BuberDinner.Domain.Guests.ValueObjects;
 
-public sealed class GuestId : AggregateRootId<Guid>
+public sealed class GuestId : ValueId<Guid>
 {
     public override Guid Value { get; protected set; }
 
