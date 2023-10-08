@@ -3,8 +3,11 @@ using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Common.Errors;
 using BuberDinner.Domain.Users;
+using BuberDinner.Domain.Users.ValueObjects;
+
 using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 
 namespace BuberDinner.Application.Authentication.Queries.Login;
 
@@ -29,7 +32,8 @@ public class LoginQueryHandler :
             return Errors.Authentication.InvalidCredentials;
         }
 
-        if (user.Password != request.Password)
+        bool verified = BCrypt.Net.BCrypt.Verify(request.Password, user.Password.Value);
+        if(!verified)
         {
             return Errors.Authentication.InvalidCredentials;
         }
