@@ -45,5 +45,6 @@ No menu reading implemented now.
 ![image](pics/db-single-tables.png)
 
 ## Changes
+- Securely store user password in database
 - Save the user in the database
 - added swagger entry point
