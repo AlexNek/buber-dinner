@@ -43,3 +43,7 @@ No menu reading implemented now.
 ![image](pics/db-menu.png)
 ![image](pics/db-reservation.png)
 ![image](pics/db-single-tables.png)
+
+## Changes
+- Save the user in the database
+- added swagger entry point
