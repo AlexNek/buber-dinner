@@ -6,6 +6,8 @@ using BuberDinner.Domain.Hosts;
 using BuberDinner.Domain.MenuReview;
 using BuberDinner.Domain.Menus;
 using BuberDinner.Domain.Users;
+using BuberDinner.Domain.Users.ValueObjects;
+using BuberDinner.Infrastructure.Persistence.Converters;
 using BuberDinner.Infrastructure.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,5 +48,12 @@ public sealed class BuberDinnerDbContext : DbContext
             .AddInterceptors(_publishDomainEventsInterceptor);
 
         base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder
+            .Properties<SecurePassword>()
+            .HaveConversion<SecurePasswordConverter>();
     }
 }
