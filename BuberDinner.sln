@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{DF
 		Requests\Menus\CreateMenuRequest.http = Requests\Menus\CreateMenuRequest.http
 		Requests\Dinners\ListDinners.http = Requests\Dinners\ListDinners.http
 		Requests\Authentication\Login.http = Requests\Authentication\Login.http
+		Requests\Authentication\Register-bad-email.http = Requests\Authentication\Register-bad-email.http
 		Requests\Authentication\Register.http = Requests\Authentication\Register.http
 	EndProjectSection
 EndProject
