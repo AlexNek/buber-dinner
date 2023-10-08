@@ -45,6 +45,7 @@ No menu reading implemented now.
 ![image](pics/db-single-tables.png)
 
 ## Changes
+- Validate email for registration and login
 - Securely store user password in database
 - Save the user in the database
-- added swagger entry point
+- Added swagger entry point
