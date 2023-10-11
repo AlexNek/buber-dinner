@@ -6,6 +6,7 @@ using BuberDinner.Domain.Menus.Entites;
 using BuberDinner.Domain.Menus.ValueObjects;
 using BuberDinner.Domain.MenuReview.ValueObjects;
 using BuberDinner.Domain.Menus.Events;
+using System;
 
 namespace BuberDinner.Domain.Menus;
 
@@ -33,7 +34,9 @@ public sealed class Menu : AggregateRoot<MenuId, Guid>
         string name,
         string description,
         AverageRating averageRating,
-        List<MenuSection>? sections)
+        List<MenuSection>? sections,
+        DateTime createdDateTime,
+        DateTime updatedDateTime)
         : base(menuId)
     {
         HostId = hostId;
@@ -41,6 +44,8 @@ public sealed class Menu : AggregateRoot<MenuId, Guid>
         Description = description;
         _sections = sections;
         AverageRating = averageRating;
+        CreatedDateTime = createdDateTime;
+        UpdatedDateTime = updatedDateTime;
     }
 
     public static Menu Create(
@@ -55,7 +60,9 @@ public sealed class Menu : AggregateRoot<MenuId, Guid>
             name,
             description,
             AverageRating.CreateNew(0),
-            sections ?? new());
+            sections ?? new(),
+            DateTime.UtcNow,
+            DateTime.UtcNow);
 
         menu.AddDomainEvent(new MenuCreated(menu));
 
