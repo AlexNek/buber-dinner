@@ -1,10 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DomainModels\Aggregates.Bill.md" />
+    <None Remove="DomainModels\Aggregates.Dinner.md" />
+    <None Remove="DomainModels\Aggregates.Guest.md" />
+    <None Remove="DomainModels\Aggregates.Host.md" />
+    <None Remove="DomainModels\Aggregates.Menu.md" />
+    <None Remove="DomainModels\Aggregates.MenuReview.md" />
+    <None Remove="DomainModels\Aggregates.User.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="DomainModels\Aggregates.Bill.md" />
+    <Compile Include="DomainModels\Aggregates.Dinner.md" />
+    <Compile Include="DomainModels\Aggregates.Guest.md" />
+    <Compile Include="DomainModels\Aggregates.Host.md" />
+    <Compile Include="DomainModels\Aggregates.Menu.md" />
+    <Compile Include="DomainModels\Aggregates.MenuReview.md" />
+    <Compile Include="DomainModels\Aggregates.User.md" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BuberDinner.Application\BuberDinner.Application.csproj" />
