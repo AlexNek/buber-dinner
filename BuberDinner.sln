@@ -29,6 +29,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{DF
 		Requests\Authentication\Register.http = Requests\Authentication\Register.http
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89930084-465D-4CFC-9DAB-A08C8B388EFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{0EA943CA-8BC7-42CB-8625-92445D9D4F1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Application.UnitTests", "Tests\UnitTests\BuberDinner.Application.UnitTests\BuberDinner.Application.UnitTests.csproj", "{6E8FAE9D-8D9F-4D29-B805-B7B534D41C85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Api.UnitTests", "Tests\UnitTests\BuberDinner.Api.UnitTests\BuberDinner.Api.UnitTests.csproj", "{4498CEC2-E6C0-41DA-89BE-F76377AF332B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Domain.UnitTests", "Tests\UnitTests\BuberDinner.Domain.UnitTests\BuberDinner.Domain.UnitTests.csproj", "{20DDEEAC-4B21-49E2-89CA-CDA53CCA4E22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Infrastructure.UnitTests", "Tests\UnitTests\BuberDinner.Infrastructure.UnitTests\BuberDinner.Infrastructure.UnitTests.csproj", "{78152F3F-0D5C-4A0D-B03F-2CA0B582CF02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,12 +67,33 @@ Global
 		{F821F29D-EE06-48E4-BB79-78F582915B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F821F29D-EE06-48E4-BB79-78F582915B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F821F29D-EE06-48E4-BB79-78F582915B4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E8FAE9D-8D9F-4D29-B805-B7B534D41C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E8FAE9D-8D9F-4D29-B805-B7B534D41C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E8FAE9D-8D9F-4D29-B805-B7B534D41C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E8FAE9D-8D9F-4D29-B805-B7B534D41C85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4498CEC2-E6C0-41DA-89BE-F76377AF332B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4498CEC2-E6C0-41DA-89BE-F76377AF332B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4498CEC2-E6C0-41DA-89BE-F76377AF332B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4498CEC2-E6C0-41DA-89BE-F76377AF332B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20DDEEAC-4B21-49E2-89CA-CDA53CCA4E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DDEEAC-4B21-49E2-89CA-CDA53CCA4E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DDEEAC-4B21-49E2-89CA-CDA53CCA4E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DDEEAC-4B21-49E2-89CA-CDA53CCA4E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78152F3F-0D5C-4A0D-B03F-2CA0B582CF02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78152F3F-0D5C-4A0D-B03F-2CA0B582CF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78152F3F-0D5C-4A0D-B03F-2CA0B582CF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78152F3F-0D5C-4A0D-B03F-2CA0B582CF02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DF7DD3EB-4A8E-49DD-8F9F-62D19FF81F2E} = {31FE62C4-F6EC-41D2-BF29-609A00674F5D}
+		{0EA943CA-8BC7-42CB-8625-92445D9D4F1F} = {89930084-465D-4CFC-9DAB-A08C8B388EFF}
+		{6E8FAE9D-8D9F-4D29-B805-B7B534D41C85} = {0EA943CA-8BC7-42CB-8625-92445D9D4F1F}
+		{4498CEC2-E6C0-41DA-89BE-F76377AF332B} = {0EA943CA-8BC7-42CB-8625-92445D9D4F1F}
+		{20DDEEAC-4B21-49E2-89CA-CDA53CCA4E22} = {0EA943CA-8BC7-42CB-8625-92445D9D4F1F}
+		{78152F3F-0D5C-4A0D-B03F-2CA0B582CF02} = {0EA943CA-8BC7-42CB-8625-92445D9D4F1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BC648C1-BAA8-4A37-8A0D-ECE32144D44F}
