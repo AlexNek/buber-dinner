@@ -4,12 +4,30 @@ This repository follows course from YouTube on channel named `Amichai Mantinband
 I have updated the original repository so that it is more developer-friendly. I also plan to add some missing functionality.
 
 ## About applications
+How does the mobile application look like?
+![image](pics/mobile-app.png)  
+*Pic. Mobile application UI ( © Amichai Mantinband)
+
+At the moment we only have a REST API part in the repository.
 Application is written in .NET 6.0 with C# using WebAPI technology. This solutions follows Clean Architecture principles and Domain-Driven Design principles. It contains 4 layers:
  - Domain
  - Application
  - Infrastructure
  - Api
- 
+
+
+| Name | Description |
+|--------|--------|
+| Menu   | A list of dishes associated to some host and dinners  |
+| Dinner   | An event organised by the host person. Include food and possibly some kind of action  |
+| Host   |  Event location and event organiser |
+| Guest   | Person reserving seat and attending event |
+| User   | Person registered in the application |
+| Reservation | An arrangement made by guests in advance to confirm a place for the event at a particular time of day |
+| Bill   | A statement of money owed for the supply of the event/food |
+| Menu Review   |        |
+| Guest Rating  |        |
+
 More information about DDD and the project can be found [here](https://github.com/AlexNek/ddd-for-developers).
 
 ## Build and run
