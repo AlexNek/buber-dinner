@@ -9,12 +9,12 @@ public static class AuthUtils
 {
     public static RegisterCommand CreateRegisterCommand()
     {
-        return new RegisterCommand(Constants.Auth.FirstName, Constants.Auth.FirstName, Constants.Auth.Email, Constants.Auth.Password);
+        return new RegisterCommand(Constants.Auth.FirstName, Constants.Auth.LastName, Constants.Auth.Email, Constants.Auth.Password);
     }
 
     public static User CreateUser()
     {
-        return User.Create(Constants.Auth.FirstName, Constants.Auth.FirstName, Constants.Auth.Email, Constants.Auth.Password);
+        return User.Create(Constants.Auth.FirstName, Constants.Auth.LastName, Constants.Auth.Email, Constants.Auth.Password);
     }
 
     public static LoginQuery CreateLoginQuery()
