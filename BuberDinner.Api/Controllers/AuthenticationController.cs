@@ -18,14 +18,19 @@ public class AuthenticationController : ApiController
 
     public AuthenticationController(ISender mediator, IMapper mapper)
     {
-        _mediator = mediator;
-        _mapper = mapper;
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
+        if (request == null)
+        {
+            throw new ArgumentNullException(nameof(request));
+        }
+
         var command = _mapper.Map<RegisterCommand>(request);
         var authenticationResult = await _mediator.Send(command);
 
@@ -38,6 +43,11 @@ public class AuthenticationController : ApiController
     [Route("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
+        if (request == null)
+        {
+            throw new ArgumentNullException(nameof(request));
+        }
+
         var query = _mapper.Map<LoginQuery>(request);
         var authenticationResult = await _mediator.Send(query);
 

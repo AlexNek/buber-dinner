@@ -14,8 +14,8 @@ public class MenusController : ApiController
 
     public MenusController(IMapper mapper, ISender mediator)
     {
-        _mapper = mapper;
-        _mediator = mediator;
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
     [HttpPost]
@@ -23,6 +23,11 @@ public class MenusController : ApiController
         CreateMenuRequest request,
         Guid hostId)
     {
+        if (request == null)
+        {
+            throw new ArgumentNullException(nameof(request));
+        }
+
         var command = _mapper.Map<CreateMenuCommand>((request, hostId));
 
         var createMenuResult = await _mediator.Send(command);
