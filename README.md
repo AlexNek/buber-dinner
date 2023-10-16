@@ -63,6 +63,7 @@ No menu reading implemented now.
 ![image](pics/db-single-tables.png)
 
 ## Changes
+- Implmented BuberDinner.Api.UnitTests
 - Added BuberDinner.Application.UnitTests and empty test projects
 - Validate email for registration and login
 - Securely store user password in database
