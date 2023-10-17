@@ -15,6 +15,7 @@ Application is written in .NET 6.0 with C# using WebAPI technology. This solutio
  - Infrastructure
  - Api
 
+Dinner Hosting Context
 
 | Name | Description |
 |--------|--------|
@@ -25,8 +26,8 @@ Application is written in .NET 6.0 with C# using WebAPI technology. This solutio
 | User   | Person registered in the application |
 | Reservation | An arrangement made by guests in advance to confirm a place for the event at a particular time of day |
 | Bill   | A statement of money owed for the supply of the event/food |
-| Menu Review   |        |
-| Guest Rating  |        |
+| Menu Review   | Opinion voting on food  |
+| Guest Rating  | Opinion poll for guests  |
 
 More information about DDD and the project can be found [here](https://github.com/AlexNek/ddd-for-developers).
 
