@@ -10,7 +10,7 @@ namespace BuberDinner.Api.UnitTests;
 
 public static class MenuUtils
 {
-    public static List<MenuSectionCommand> Convert(List<MenuSection> sections)
+    public static List<MenuSectionCommand> Convert(List<MenuSectionRequest> sections)
     {
         return Enumerable.Range(0, sections.Count).Select(
             index => new MenuSectionCommand(
@@ -20,7 +20,7 @@ public static class MenuUtils
             )).ToList();
     }
 
-    public static List<MenuItemCommand> Convert(List<MenuItem> items)
+    public static List<MenuItemCommand> Convert(List<MenuItemRequest> items)
     {
         IEnumerable<int> range = Enumerable.Range(0, items.Count);
         IEnumerable<MenuItemCommand> commands = range.Select(
@@ -69,14 +69,14 @@ public static class MenuUtils
         return responses.ToList();
     }
 
-    public static Menu CreateMenu(CreateMenuRequest createMenuRequest, Guid hostId)
+    public static Menu CreateMenu(MenuRequest menuRequest, Guid hostId)
     {
         Menu menu = Menu.Create(HostId.Create(hostId), Constants.Menu.Name, Constants.Menu.Description, Convert2Entities(CreateSections()));
 
         return menu;
     }
 
-    public static CreateMenuCommand CreateMenuCommand(Guid hostId, CreateMenuRequest inp)
+    public static CreateMenuCommand CreateMenuCommand(Guid hostId, MenuRequest inp)
     {
         return new CreateMenuCommand(
             hostId,
@@ -85,10 +85,10 @@ public static class MenuUtils
             Convert(inp.Sections));
     }
 
-    public static List<MenuItem> CreateMenuItems(int itemCount = 1)
+    public static List<MenuItemRequest> CreateMenuItems(int itemCount = 1)
     {
         return Enumerable.Range(0, itemCount).Select(
-            index => new MenuItem(Constants.Menu.ItemNameFromIndex(index), Constants.Menu.ItemDescriptionFromIndex(index))
+            index => new MenuItemRequest(Constants.Menu.ItemNameFromIndex(index), Constants.Menu.ItemDescriptionFromIndex(index))
         ).ToList();
     }
 
@@ -108,26 +108,26 @@ public static class MenuUtils
         );
     }
 
-    public static CreateMenuRequest CreateRequest(List<MenuSection>? sections = null)
+    public static MenuRequest CreateRequest(List<MenuSectionRequest>? sections = null)
     {
-        return new CreateMenuRequest(
+        return new MenuRequest(
             Constants.Menu.Name,
             Constants.Menu.Description,
             sections ?? CreateSections()
         );
     }
 
-    public static List<MenuSection> CreateSections(int sectionCount = 1, List<MenuItem>? items = null)
+    public static List<MenuSectionRequest> CreateSections(int sectionCount = 1, List<MenuItemRequest>? items = null)
     {
         return Enumerable.Range(0, sectionCount).Select(
-            index => new MenuSection(
+            index => new MenuSectionRequest(
                 Constants.Menu.SectionNameFromIndex(index),
                 Constants.Menu.SectionDescriptionFromIndex(index),
                 items ?? CreateMenuItems()
             )).ToList();
     }
 
-    private static List<Domain.Menus.Entites.MenuSection> Convert2Entities(List<MenuSection> sections)
+    private static List<Domain.Menus.Entites.MenuSection> Convert2Entities(List<MenuSectionRequest> sections)
     {
         IEnumerable<int> range = Enumerable.Range(0, sections.Count);
         IEnumerable<Domain.Menus.Entites.MenuSection> items = range.Select(
@@ -139,7 +139,7 @@ public static class MenuUtils
         return items.ToList();
     }
 
-    private static List<Domain.Menus.Entites.MenuItem> Convert2Entities(List<MenuItem> items)
+    private static List<Domain.Menus.Entites.MenuItem> Convert2Entities(List<MenuItemRequest> items)
     {
         IEnumerable<int> range = Enumerable.Range(0, items.Count);
         IEnumerable<Domain.Menus.Entites.MenuItem> menuItems = range.Select(

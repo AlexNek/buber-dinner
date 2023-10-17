@@ -20,7 +20,7 @@ public class MenusController : ApiController
 
     [HttpPost]
     public async Task<IActionResult> CreateMenu(
-        CreateMenuRequest request,
+        MenuRequest request,
         Guid hostId)
     {
         if (request == null)

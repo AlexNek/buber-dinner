@@ -39,13 +39,13 @@ namespace BuberDinner.Api.UnitTests.Controllers
         public async Task MenuController_CanCallCreateMenu()
         {
             // Arrange
-            CreateMenuRequest request = MenuUtils.CreateRequest();
+            MenuRequest request = MenuUtils.CreateRequest();
             var hostId = new Guid("35d538f2-5bca-4668-bff0-8f57a059692f");
             //var valueTuple = (CreateMenuRequest Request, Guid HostId);
-            _mapper.Setup(mock => mock.Map<CreateMenuCommand>(It.IsAny<(CreateMenuRequest, Guid)>()))
-                .Returns(((CreateMenuRequest, Guid) inp) =>
+            _mapper.Setup(mock => mock.Map<CreateMenuCommand>(It.IsAny<(MenuRequest, Guid)>()))
+                .Returns(((MenuRequest, Guid) inp) =>
                     {
-                        (CreateMenuRequest? menuRequest, Guid guid) = inp;
+                        (MenuRequest? menuRequest, Guid guid) = inp;
                         return MenuUtils.CreateMenuCommand(guid, menuRequest);
                     });
             _mapper.Setup(mock => mock.Map<MenuResponse>(It.IsAny<Menu>())).Returns(
@@ -80,7 +80,7 @@ namespace BuberDinner.Api.UnitTests.Controllers
         [Fact]
         public async Task MenuController_CannotCallCreateMenuWithNullRequest()
         {
-            await FluentActions.Invoking(() => _testClass.CreateMenu(default(CreateMenuRequest), new Guid("4020d580-2bc2-4976-974b-24390acb4963")))
+            await FluentActions.Invoking(() => _testClass.CreateMenu(default(MenuRequest), new Guid("4020d580-2bc2-4976-974b-24390acb4963")))
                 .Should().ThrowAsync<ArgumentNullException>().WithParameterName("request");
         }
 

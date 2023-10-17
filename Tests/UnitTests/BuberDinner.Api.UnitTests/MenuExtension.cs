@@ -6,7 +6,7 @@ namespace BuberDinner.Api.UnitTests
 {
     internal static class MenuExtension
     {
-        public static void ValidateCreatedFrom(this MenuResponse menuResponse, CreateMenuRequest request)
+        public static void ValidateCreatedFrom(this MenuResponse menuResponse, MenuRequest request)
         {
             menuResponse.Name.Should().Be(request.Name);
             menuResponse.Description.Should().Be(request.Description);
@@ -14,14 +14,14 @@ namespace BuberDinner.Api.UnitTests
             menuResponse.Sections.Zip(request.Sections).ToList().ForEach(pair => ValidateSection(pair.First, pair.Second));
         }
 
-        private static void ValidateItem(MenuItemResponse item, MenuItem command)
+        private static void ValidateItem(MenuItemResponse item, MenuItemRequest command)
         {
             item.Id.Should().NotBeNull();
             item.Name.Should().Be(command.Name);
             item.Description.Should().Be(command.Description);
         }
 
-        private static void ValidateSection(MenuSectionResponse section, MenuSection command)
+        private static void ValidateSection(MenuSectionResponse section, MenuSectionRequest command)
         {
             section.Id.Should().NotBeNull();
             section.Name.Should().Be(command.Name);
