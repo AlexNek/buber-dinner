@@ -39,7 +39,7 @@ namespace BuberDinner.Api.UnitTests.Controllers
         public async Task MenuController_CanCallCreateMenu()
         {
             // Arrange
-            MenuRequest request = MenuUtils.CreateRequest();
+            MenuRequest request = MenuUtils.CreateMenuRequest();
             var hostId = new Guid("35d538f2-5bca-4668-bff0-8f57a059692f");
             //var valueTuple = (CreateMenuRequest Request, Guid HostId);
             _mapper.Setup(mock => mock.Map<CreateMenuCommand>(It.IsAny<(MenuRequest, Guid)>()))

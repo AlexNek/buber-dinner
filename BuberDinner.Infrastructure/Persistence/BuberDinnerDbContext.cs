@@ -15,11 +15,11 @@ namespace BuberDinner.Infrastructure.Persistence;
 
 public sealed class BuberDinnerDbContext : DbContext
 {
-    private readonly PublishDomainEventsInterceptor _publishDomainEventsInterceptor;
+    private readonly PublishDomainEventsInterceptor? _publishDomainEventsInterceptor;
 
     public BuberDinnerDbContext(
         DbContextOptions<BuberDinnerDbContext> options,
-        PublishDomainEventsInterceptor publishDomainEventsInterceptor
+        PublishDomainEventsInterceptor? publishDomainEventsInterceptor
     ) : base(options)
     {
         _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
@@ -62,8 +62,11 @@ public sealed class BuberDinnerDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder
-            .AddInterceptors(_publishDomainEventsInterceptor);
+        if (_publishDomainEventsInterceptor != null)
+        {
+            optionsBuilder
+                .AddInterceptors(_publishDomainEventsInterceptor);
+        }
 
         base.OnConfiguring(optionsBuilder);
     }

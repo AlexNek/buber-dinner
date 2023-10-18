@@ -24,7 +24,7 @@ namespace BuberDinner.Application.UnitTests.Menus.Commands.CreateMenu
             _mockRepository = new MockRepository(MockBehavior.Strict);
 
             _mockMenuRepository = _mockRepository.Create<IMenuRepository>();
-            _mockMenuRepository.Setup(m => m.Add(It.IsAny<Menu>()));
+            _mockMenuRepository.Setup(m => m.AddAsync(It.IsAny<Menu>())).Returns(Task.CompletedTask);
         }
 
         [Theory]
@@ -44,7 +44,7 @@ namespace BuberDinner.Application.UnitTests.Menus.Commands.CreateMenu
             result.Value.Should().NotBeNull();
             result.Value.ValidateCreatedFrom(menuCommand);
 
-            _mockMenuRepository.Verify(m => m.Add(result.Value), Times.Once());
+            _mockMenuRepository.Verify(m => m.AddAsync(result.Value), Times.Once());
             //_mockRepository.VerifyAll();
         }
 

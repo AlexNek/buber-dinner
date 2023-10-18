@@ -1,12 +1,12 @@
-﻿using BuberDinner.Api.UnitTests.Consts;
-using BuberDinner.Application.Menus.Commands.CreateMenu;
+﻿using BuberDinner.Application.Menus.Commands.CreateMenu;
 using BuberDinner.Contracts.Menus;
 using BuberDinner.Domain.Dinners.ValueObjects;
 using BuberDinner.Domain.Hosts.ValueObjects;
 using BuberDinner.Domain.MenuReview.ValueObjects;
 using BuberDinner.Domain.Menus;
+using BuberDinner.Infrastructure.UnitTests.Consts;
 
-namespace BuberDinner.Api.UnitTests;
+namespace BuberDinner.Infrastructure.UnitTests;
 
 public static class MenuUtils
 {
@@ -47,27 +47,27 @@ public static class MenuUtils
         return items.ToList();
     }
 
-    public static List<MenuSectionResponse> Convert2Response(IReadOnlyList<Domain.Menus.Entites.MenuSection> sections)
-    {
-        IEnumerable<int> range = Enumerable.Range(0, sections.Count);
-        IEnumerable<MenuSectionResponse> responses = range.Select(
-            index => new MenuSectionResponse(
-                index.ToString(),
-                sections[index].Name,
-                sections[index].Description,
-                Convert2Response(sections[index].Items))
-        );
-        return responses.ToList();
-    }
+    //public static List<MenuSectionResponse> Convert2Response(IReadOnlyList<Domain.Menus.Entites.MenuSection> sections)
+    //{
+    //    IEnumerable<int> range = Enumerable.Range(0, sections.Count);
+    //    IEnumerable<MenuSectionResponse> responses = range.Select(
+    //        index => new MenuSectionResponse(
+    //            index.ToString(),
+    //            sections[index].Name,
+    //            sections[index].Description,
+    //            Convert2Response(sections[index].Items))
+    //    );
+    //    return responses.ToList();
+    //}
 
-    public static List<MenuItemResponse> Convert2Response(IReadOnlyList<Domain.Menus.Entites.MenuItem> items)
-    {
-        IEnumerable<int> range = Enumerable.Range(0, items.Count);
-        IEnumerable<MenuItemResponse> responses = range.Select(
-            index => new MenuItemResponse(index.ToString(), items[index].Name, items[index].Description)
-        );
-        return responses.ToList();
-    }
+    //public static List<MenuItemResponse> Convert2Response(IReadOnlyList<Domain.Menus.Entites.MenuItem> items)
+    //{
+    //    IEnumerable<int> range = Enumerable.Range(0, items.Count);
+    //    IEnumerable<MenuItemResponse> responses = range.Select(
+    //        index => new MenuItemResponse(index.ToString(), items[index].Name, items[index].Description)
+    //    );
+    //    return responses.ToList();
+    //}
 
     public static Menu CreateMenu(MenuRequest menuRequest, Guid hostId)
     {
@@ -76,14 +76,14 @@ public static class MenuUtils
         return menu;
     }
 
-    public static CreateMenuCommand CreateMenuCommand(Guid hostId, MenuRequest inp)
-    {
-        return new CreateMenuCommand(
-            hostId,
-            inp.Name,
-            inp.Description,
-            Convert(inp.Sections));
-    }
+    //public static CreateMenuCommand CreateMenuCommand(Guid hostId, MenuRequest inp)
+    //{
+    //    return new CreateMenuCommand(
+    //        hostId,
+    //        inp.Name,
+    //        inp.Description,
+    //        Convert(inp.Sections));
+    //}
 
     public static List<MenuItemRequest> CreateMenuItems(int itemCount = 1)
     {
@@ -92,21 +92,21 @@ public static class MenuUtils
         ).ToList();
     }
 
-    public static MenuResponse CreateMenuResponse(Menu inp)
-    {
-        return new MenuResponse(
-            inp.Id.ToString(),
-            inp.Name,
-            inp.Description,
-            inp.AverageRating.Value,
-            Convert2Response(inp.Sections),
-            inp.HostId.ToString(),
-            Convert(inp.DinnerIds),
-            Convert(inp.MenuReviewIds),
-            inp.CreatedDateTime,
-            inp.UpdatedDateTime
-        );
-    }
+    //public static MenuResponse CreateMenuResponse(Menu inp)
+    //{
+    //    return new MenuResponse(
+    //        inp.Id.ToString(),
+    //        inp.Name,
+    //        inp.Description,
+    //        inp.AverageRating.Value,
+    //        Convert2Response(inp.Sections),
+    //        inp.HostId.ToString(),
+    //        Convert(inp.DinnerIds),
+    //        Convert(inp.MenuReviewIds),
+    //        inp.CreatedDateTime,
+    //        inp.UpdatedDateTime
+    //    );
+    //}
 
     public static MenuRequest CreateMenuRequest(List<MenuSectionRequest>? sections = null)
     {

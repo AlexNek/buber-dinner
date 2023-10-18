@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BuberDinner.Infrastructure.UnitTests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "TRACE": "true"
+      }
+    }
+  }
+}

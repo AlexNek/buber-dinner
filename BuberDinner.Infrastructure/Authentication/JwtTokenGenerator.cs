@@ -16,12 +16,22 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 
     public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions)
     {
-        _dateTimeProvider = dateTimeProvider;
+        if (jwtOptions == null)
+        {
+            throw new ArgumentNullException(nameof(jwtOptions));
+        }
+
+        _dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
         _jwtSettings = jwtOptions.Value;
     }
 
     public string GenerateToken(User user)
     {
+        if (user == null)
+        {
+            throw new ArgumentNullException(nameof(user));
+        }
+
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
@@ -42,6 +52,8 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             claims: claims,
             signingCredentials: signingCredentials);
 
-        return new JwtSecurityTokenHandler().WriteToken(securityToken);
+        var tokenHandler = new JwtSecurityTokenHandler();
+        string token = tokenHandler.WriteToken(securityToken);
+        return token;
     }
 }

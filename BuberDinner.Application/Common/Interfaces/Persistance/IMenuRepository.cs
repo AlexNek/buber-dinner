@@ -4,5 +4,6 @@ namespace BuberDinner.Application.Common.Interfaces.Persistance;
 
 public interface IMenuRepository
 {
-    void Add(Menu menu);
+    Task AddAsync(Menu menu);
+    Task<IEnumerable<Menu>> GetAllAsync();
 }
