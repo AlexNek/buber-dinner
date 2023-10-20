@@ -17,17 +17,17 @@ Application is written in .NET 6.0 with C# using WebAPI technology. This solutio
 
 Dinner Hosting Context
 
-| Name | Description |
-|--------|--------|
-| Menu   | A list of dishes associated to some host and dinners  |
-| Dinner   | An event organised by the host person. Include food and possibly some kind of action  |
-| Host   |  Event location and event organiser |
-| Guest   | Person reserving seat and attending event |
-| User   | Person registered in the application |
-| Reservation | An arrangement made by guests in advance to confirm a place for the event at a particular time of day |
-| Bill   | A statement of money owed for the supply of the event/food |
-| Menu Review   | Opinion voting on food  |
-| Guest Rating  | Opinion poll for guests  |
+| Name | Description |Aggregate|
+|--------|--------|--------|
+| Menu   | A list of dishes associated to some host and dinners  |![image](pics/agr_menu.png)|
+| Dinner   | An event organised by the host person. Include food and possibly some kind of action  |![image](pics/agr_dinner.png)|
+| Host   |  Event location and event organiser |![image](pics/agr_host.png)|
+| Guest   | Person reserving seat and attending event |![image](pics/agr_guest.png)|
+| User   | Person registered in the application |![image](pics/agr_user.png)|
+| Reservation | An arrangement made by guests in advance to confirm a place for the event at a particular time of day | see Dinner|
+| Bill   | A statement of money owed for the supply of the event/food |![image](pics/agr_bill.png)|
+| Menu Review   | Opinion voting on food  |![image](pics/agr_menu_review.png)|
+| Guest Rating  | Opinion poll for guests  |see Guest|
 
 More information about DDD and the project can be found [here](https://github.com/AlexNek/ddd-for-developers).
 
